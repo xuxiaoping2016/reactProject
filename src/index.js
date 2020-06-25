@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 // import Hello from './component/Hello/Hello';
+import { Provider } from 'react-redux';
 import getRouter from './router/router';
 import {AppContainer} from 'react-hot-loader';
+import store from 'store/store';
 
 
 /*初始化*/
@@ -19,7 +21,9 @@ if (module.hot) {
 function renderWithHotReload(RootElement) {
     ReactDom.render(
         <AppContainer>
-            {RootElement}
+            <Provider store={store}>
+                {RootElement}
+            </Provider>
         </AppContainer>,
         document.getElementById('app')
     )

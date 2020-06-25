@@ -1,20 +1,21 @@
 const path = require('path');
 const webpack = require("webpack");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: {
-        app:['react-hot-loader/patch', path.join(__dirname,'src/index.js')],
+        app:[path.join(__dirname,'src/index.js')],
         vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux']
     },
 
     output: {
         path: path.join(__dirname, 'dist'),
         // filename:"bundle.js"
-        filename: 'js/[name].[hash].js',
+        filename: 'js/[name].[chunkhash].js',
         chunkFilename: 'js/[name].[chunkhash].js'
     },
     module : {
@@ -62,6 +63,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.join(__dirname, 'src/index.html')
@@ -70,14 +72,13 @@ module.exports = {
             // Options similar to the same options in webpackOptions.output
             // both options are optional
             filename: "css/[name].css",
-            chunkFilename: "css/[id].css"
+            chunkFilename: "css/[name].css"
         }),
         new CopyWebpackPlugin({
             patterns: [
                 { from: 'src/api', to: 'api' }
             ]
-        }),
-        new webpack.HotModuleReplacementPlugin()
+        })
     ],
     optimization: {
         splitChunks: {
@@ -101,12 +102,5 @@ module.exports = {
             imgs: path.join(__dirname, 'src/images')
         }
     },
-    devtool: 'nosources-source-map',
-    devServer: {
-        port: 8080,
-        contentBase: path.join(__dirname, './dist'),
-        historyApiFallback: true,
-        host: '0.0.0.0',
-        hot: true
-    } 
+    devtool: 'cheap-module-source-map'
 }

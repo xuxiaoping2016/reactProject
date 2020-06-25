@@ -51,6 +51,80 @@ https://www.jianshu.com/p/bea658a8b721
 
 
 
+devtool优化
+mode: 'development' 打包出来的依然可以看是哪个文件报错
+mode:"production"  只展示bundle.js 报错
+
+webpack中devtool的配置方案[开发模式]---[线上模式]
+https://www.cnblogs.com/ladybug7/p/12321254.html
+
+显微镜下的webpack4的新特性：mode详解
+https://www.cnblogs.com/cherryvenus/p/9808320.html
+
+配置less
+npm install style-loader css-loader less-loader postcss-loader autoprefixer --save-dev
+https://www.cnblogs.com/RoadAspenBK/p/9342850.html
+
+配置scss
+npm install node-sass sass-loader css-loader style-loader postcss-loader autoprefixer -D
+样式配置
+https://www.npmjs.com/package/postcss-loader
+PostCSS以及cssnext语法
+
+browserslist详解
+https://www.jianshu.com/p/d45a31c50711
+
+
+css-loader中importLoaders的理解
+https://zhuanlan.zhihu.com/p/94706976
+
+
+postcss-loader的插件
+autoprefixer   https://github.com/postcss/autoprefixer
+解决wepacke配置postcss-loader时autoprefixer失效问题
+https://www.cnblogs.com/ellen-mylife/p/12408879.html
+
+postcss-import
+cssnano
+
+postcss-cssnext  //postcss-cssnext has been deprecated in favor of postcss-preset-env
+postcss-preset-env   https://www.dazhuanlan.com/2020/03/12/5e69f574c1bef/
+   2者的关系  https://moox.io/blog/deprecating-cssnext/
+
+postcss-modules
+postcss-sprites
+
+
+"browserslist": [
+    "> 1%",
+    "last 7 versions",
+    "not ie <= 8",
+    "ios >= 8",
+    "android >= 4.0"
+  ]
+
+MiniCssExtractPlugin    npm i mini-css-extract-plugin -D
+  "browserslist": {
+              // 开发环境 --> 设置node环境变量：process.env.NODE_ENV = development
+              "development": [
+                "last 1 chrome version",//兼容最新版
+                "last 1 firefox version",
+                "last 1 safari version"
+              ],
+              // 生产环境：默认是看生产环境
+              "production": [
+                ">0.2%",
+                "not dead",
+                "not op_mini all"
+              ]
+            }
+原文链接：https://blog.csdn.net/weixin_44523860/java/article/details/105529729
+使用mini-css-extract-plugin 报错ReferenceError:xxx is not defined
+https://www.cnblogs.com/zhouhui231/p/12688496.html
+大专栏
+https://www.dazhuanlan.com/mobile/
+
+
 二、babel5 和 babel6 的区别
 https://www.cnblogs.com/sker/p/5482400.html
 
