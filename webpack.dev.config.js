@@ -2,10 +2,11 @@
  * @Author: xiaoping.xu
  * @Date: 2021-03-19 11:05:02
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-03 02:21:10
+ * @LastEditTime: 2021-05-03 17:33:43
  * @Desc: 
  */
 const path = require("path")
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -30,8 +31,9 @@ module.exports = {
     },
     devServer: {
         port: 8070,
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: path.join(__dirname, './dist'),
         historyApiFallback: true,
+        inline: true,
         hot: true
     },
     resolve: {
@@ -44,5 +46,12 @@ module.exports = {
             // reducers: path.join(__dirname, 'src/store/reducers'),
             // imgs: path.join(__dirname, 'src/images')
         }
-    }     
+    },
+    plugins:[
+        new HtmlWebpackPlugin({
+            title:"热更新",
+            filename: 'hot.html',
+            template: path.join(__dirname, 'src/index.html')
+        })
+    ]  
 }

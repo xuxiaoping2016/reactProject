@@ -11,36 +11,36 @@
 //     ]
 //   }
 
-{
-  "compilerOptions": {
-      "skipLibCheck": true,
-      "module": "esnext",
-      "target": "es2016",
-      // "module": "commonjs",
-      // "target": "es5",
-      "lib": ["es6", "es7", "dom"],
-      "sourceMap": true,
-      "jsx": "react",
-      "baseUrl": ".",
-      "allowSyntheticDefaultImports": true,
-      "moduleResolution": "node",
-      "rootDirs": ["./src"],
-      "forceConsistentCasingInFileNames": true,
-      "noImplicitReturns": true,
-      "suppressImplicitAnyIndexErrors": true,
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
-      "allowJs": true,
-      "allowUnusedLabels": true,
-      "experimentalDecorators": true,
-      "noEmit": true,
-      // "types": ["jest", "node"],
-      "typeRoots": ["./typings"],
-      "paths": {
-          "@/*": ["src/*"]
-      },
-      // "noImplicitAny": true,
-  },
-  "include": [ "src/**/*"],
-  "exclude": ["node_modules", "build", "scripts", "kraken.config.js", "kraken.menu.js", "**/*.unit.test.ts", "**/*.unit.test.tsx"]
-}
+// {
+//   "compilerOptions": {
+//       "skipLibCheck": true,
+//       "module": "esnext",
+//       "target": "es2016",
+//       // "module": "commonjs",
+//       // "target": "es5",
+//       "lib": ["es6", "es7", "dom"],
+//       "sourceMap": true,
+//       "jsx": "react",
+//       "baseUrl": ".",
+//       "allowSyntheticDefaultImports": true,
+//       "moduleResolution": "node",
+//       "rootDirs": ["./src"],
+//       "forceConsistentCasingInFileNames": true,
+//       "noImplicitReturns": true,
+//       "suppressImplicitAnyIndexErrors": true,
+//       "noUnusedLocals": true,
+//       "noUnusedParameters": true,
+//       "allowJs": true,
+//       "allowUnusedLabels": true,
+//       "experimentalDecorators": true,
+//       "noEmit": true,
+//       // "types": ["jest", "node"],
+//       "typeRoots": ["./typings"],
+//       "paths": {
+//           "@/*": ["src/*"]
+//       },
+//       // "noImplicitAny": true,
+//   },
+//   "include": [ "src/**/*"],
+//   "exclude": ["node_modules", "build", "scripts", "kraken.config.js", "kraken.menu.js", "**/*.unit.test.ts", "**/*.unit.test.tsx"]
+// }
