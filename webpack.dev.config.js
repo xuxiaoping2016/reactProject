@@ -2,7 +2,7 @@
  * @Author: xiaoping.xu
  * @Date: 2021-03-19 11:05:02
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-03 17:33:43
+ * @LastEditTime: 2021-05-05 02:09:55
  * @Desc: 
  */
 const path = require("path")
@@ -10,7 +10,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: path.join(__dirname, 'src/index.js'),
+    entry: path.join(__dirname, 'src/index3.js'),
     
     /*输出到dist文件夹，输出文件名字为bundle.js*/
     output: {
@@ -49,9 +49,10 @@ module.exports = {
     },
     plugins:[
         new HtmlWebpackPlugin({
-            title:"热更新",
-            filename: 'hot.html',
-            template: path.join(__dirname, 'src/index.html')
+            template:path.resolve(__dirname,'../src/index.html'),
+            title:"react 模板",
+            // filename:"hello"
+            
         })
-    ]  
+   ]   
 }

@@ -2,7 +2,7 @@
  * @Author: xiaoping.xu
  * @Date: 2021-04-30 15:31:16
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-03 02:28:23
+ * @LastEditTime: 2021-05-03 03:19:42
  * @Desc: 
  */
 const webpack = require('webpack')
@@ -60,7 +60,7 @@ const config = {
     },
     plugins:[
         new HtmlWebpackPlugin({
-            template:path.resolve(__dirname,'../public/index.html'),
+            template:path.resolve(__dirname,'../src/index.html'),
             title:"react 模板",
             // filename:"hello"
             
