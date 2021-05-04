@@ -2,7 +2,7 @@
  * @Author: xiaoping.xu
  * @Date: 2021-04-30 15:31:16
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-03 03:19:42
+ * @LastEditTime: 2021-05-05 02:18:42
  * @Desc: 
  */
 const webpack = require('webpack')
@@ -56,7 +56,7 @@ const config = {
         port: 8080,
         contentBase: path.join(__dirname, '../dist'),
         historyApiFallback: true,
-        // hot: true
+        hot: true
     },
     plugins:[
         new HtmlWebpackPlugin({

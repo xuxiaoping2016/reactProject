@@ -2,17 +2,38 @@
  * @Author: xiaoping.xu
  * @Date: 2021-05-02 16:01:56
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-03 02:36:12
+ * @LastEditTime: 2021-05-05 02:35:18
  * @Desc: 
  */
 
 import React,{createRef, useCallback} from 'react'
 // import store from './model/store'
 import { inject, observer } from 'mobx-react'
-// const data = new store()
+import { action, computed, observable,autorun } from 'mobx'
+
+
+class Store {
+    @observable count = 0;
+    @computed get result() {
+      return this.count + 100;
+    }
+    @action add () {
+      this.count = this.count + 1;
+    }
+  };
+  
+  const mstore = new Store();
+  
+  setInterval(() => {
+   mstore.add();
+  }, 2000);
+  
+  autorun(() => {
+    console.log(mstore.result);
+  });
 
 const Page = (props) => {
-   
+   console.log('props',props)
     const nameRef = createRef<HTMLInputElement>()
     const ageRef = createRef<HTMLInputElement>()
     
@@ -25,9 +46,9 @@ const Page = (props) => {
     } = props.pageStore
     
     
-    const changeName = useCallback(()=>{
+    const changeName = ()=>{
         setName(nameRef.current.value)
-    },[])
+    }
     const changeAge = useCallback(()=>{
         setAge(Number(ageRef.current.value))
     },[])
@@ -40,7 +61,7 @@ const Page = (props) => {
 
             <div>
                 <input ref={nameRef}/>
-                <button onClick={changeName}>修改姓名</button>
+                <button onClick={changeName}>修改姓名?</button>
             </div>
             <div>
                 <input ref={ageRef}/>

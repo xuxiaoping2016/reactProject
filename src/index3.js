@@ -1,64 +1,38 @@
 /*
  * @Author: xiaoping.xu
- * @Date: 2021-05-03 02:03:56
- * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-03 02:03:57
- * @Desc: 
- */
-/*
- * @Author: xiaoping.xu
  * @Date: 2021-04-30 15:33:46
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-03 01:39:11
+ * @LastEditTime: 2021-05-05 02:16:57
  * @Desc: 
  */
+import _ from 'lodash';
+  import printMe from './print.js';
 
- import React from 'react'
- import ReactDom from 'react-dom'
- import {Provider} from 'mobx-react'
- import store from 'src/stores'
- import getRouter from './router/router'
+  function component() {
+    const element = document.createElement('div');
+    const btn = document.createElement('button');
 
+    element.innerHTML = _.join(['Hellfdfdfdo', 'webpack'], ' ');
 
- /*初始化*/
-renderWithHotReload(getRouter());
+    btn.innerHTML = 'Click me and check the console!';
+    btn.onclick = printMe;
 
-/*热更新*/
-if (module.hot) {
-    console.log('module.hot',!!module.hot)
-    module.hot.accept(() => {
-        console.log('fdfdfdfd')
-        const getRouter = require('./router/router').default;
-        console.log('getRouter',getRouter)
-        renderWithHotReload(getRouter());
-    });
-}
+    element.appendChild(btn);
 
-function renderWithHotReload(RootElement) {
-    ReactDom.render(
-        // <AppContainer>
-            <Provider {...store}>
-                {RootElement}
-            </Provider>,
-        // </AppContainer>,
-        document.getElementById('app')
-    )
-}
+    return element;
+  }
 
-//  if (module.hot) {
-//     module.hot.accept();
-// }
+  // document.body.appendChild(component());
+  let element = component();
+  document.body.appendChild(element);
 
-
-// const App = () => {
-//     return (
-//         <Provider {...store}>
-//             {getRouter()}
-//         </Provider>
-//     )
-// }
-//  ReactDom.render(
-//     <App/>,
-//      document.getElementById('app')
-//  )
-
+ if (module.hot) {
+     console.log(module.hot)
+   module.hot.accept('./print.js', function() {
+     console.log('Accepting the updated printMe module!');
+    //  printMe();
+    document.body.removeChild(element);
+    let element = component();
+    document.body.appendChild(element);
+   })
+ }

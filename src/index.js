@@ -2,37 +2,36 @@
  * @Author: xiaoping.xu
  * @Date: 2021-04-30 15:33:46
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-03 17:34:49
+ * @LastEditTime: 2021-05-05 02:22:44
  * @Desc: 
  */
-import _ from 'lodash';
-  import printMe from './print.js';
 
-  function component() {
-    const element = document.createElement('div');
-    const btn = document.createElement('button');
+import React from 'react'
+import ReactDom from 'react-dom'
+import {Provider} from 'mobx-react'
+import store from 'src/stores'
+import getRouter from './router/router'
 
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
 
-    btn.innerHTML = 'Click me and check the console!';
-    btn.onclick = printMe;
+/*初始化*/
+renderWithHotReload(getRouter());
 
-    element.appendChild(btn);
+/*热更新*/
+if (module.hot) {
+   module.hot.accept(() => {
+       const getRouter = require('./router/router').default;
+       renderWithHotReload(getRouter());
+   });
+}
 
-    return element;
-  }
-
-  // document.body.appendChild(component());
-  let element = component();
-  document.body.appendChild(element);
-
- if (module.hot) {
-     console.log(module.hot)
-   module.hot.accept('./print.js', function() {
-     console.log('Accepting the updated printMe module!');
-    //  printMe();
-    document.body.removeChild(element);
-    let element = component();
-    document.body.appendChild(element);
-   })
- }
+function renderWithHotReload(RootElement) {
+    console.log(store)
+   ReactDom.render(
+      //  <AppContainer>
+           <Provider {...store}>
+               {RootElement}
+           </Provider>,
+       // </AppContainer>,
+       document.getElementById('app')
+   )
+}

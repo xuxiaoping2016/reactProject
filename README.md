@@ -299,3 +299,11 @@ https://segmentfault.com/q/1010000021142603/
 
 
 npm install --save-dev html-webpack-plugin clean-webpack-plugin
+
+
+
+问题：
+1 ERROR in child compilations (Use 'stats.children: true' resp. '--stats-children' for more details)
+
+3 errors have detailed information that is not shown.
+Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
