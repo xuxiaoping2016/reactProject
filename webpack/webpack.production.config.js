@@ -2,7 +2,7 @@
  * @Author: xiaoping.xu
  * @Date: 2021-05-11 00:37:19
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-11 10:08:25
+ * @LastEditTime: 2021-05-11 11:24:32
  * @Desc: 
  */
 
@@ -121,6 +121,7 @@ const config = {
          }),
          new MiniCssExtractPlugin({
             filename: 'css/[name].css',
+            chunkFilename: 'css/[name].css'
          }),
         new webpack.HotModuleReplacementPlugin()
    ],
