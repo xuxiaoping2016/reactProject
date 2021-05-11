@@ -2,7 +2,7 @@
  * @Author: xiaoping.xu
  * @Date: 2021-03-19 11:05:02
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-05 02:15:15
+ * @LastEditTime: 2021-05-10 17:52:47
  * @Desc: 
  */
 const path = require("path")
@@ -15,7 +15,7 @@ module.exports = {
     /*输出到dist文件夹，输出文件名字为bundle.js*/
     output: {
         path: path.join(__dirname, './dist'),
-        filename: 'bundle.js'
+        filename: '[name].[contenthash].js'
     },
     module: {
         rules: [
@@ -37,7 +37,9 @@ module.exports = {
         hot: true
     },
     resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
         alias: {
+            src:path.join(__dirname, 'src'),
             pages: path.join(__dirname, 'src/pages'),
             component: path.join(__dirname, 'src/component'),
             router: path.join(__dirname, 'src/router'),

@@ -1,0 +1,30 @@
+@import url(//at.alicdn.com/t/font_1263048_h321ly8u5qi.css);
+.iconfont {
+  color: #999;
+  font-size: inherit;
+}
+.g-icon-red {
+  color: #f56364;
+}
+.g-icon-grey {
+  color: #ccc;
+}
+.g-icon-yellow {
+  color: #fda428;
+}
+.g-icon-green {
+  color: #1ec522;
+}
+
+.m-xs {
+  margin: 5px;
+}
+.m-sm {
+  margin: 10px;
+}
+.bg_gray {
+  background-color: #9797a1;
+}
+
+
+/*# sourceMappingURL=main.css.map*/

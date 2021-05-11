@@ -1,23 +1,26 @@
 /*
  * @Author: xiaoping.xu
- * @Date: 2021-04-30 15:31:16
+ * @Date: 2021-05-11 00:37:19
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-10 23:58:10
+ * @LastEditTime: 2021-05-11 10:08:25
  * @Desc: 
  */
+
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path')
 
 console.log('process.env.NODE_ENV',process.env.NODE_ENV)
 const config = {
-    mode: "development",
-    devtool: 'source-map',
+    mode: "production",
+    devtool: 'cheap-module-source-map',
     entry: path.join(__dirname,'../src/index.js'),
     output:{
         // filename: 'bundle.js',
-        filename: '[name].[contenthash].js',
+        filename: 'js/[name].[contenthash].js',
         path: path.join(__dirname,'../dist'),
         // publicPath:'/'
     },
@@ -46,7 +49,7 @@ const config = {
             {
                 test: /\.less$/i,
                 exclude: /node_modules|antd\.css/,
-                use: ['style-loader', {
+                use: [MiniCssExtractPlugin.loader, {
                         loader:'css-loader',
                         options: {
                             modules: {
@@ -82,7 +85,8 @@ const config = {
                 use:{
                     loader: 'url-loader',
                     options:{
-                        limit: 1024
+                        limit: 1024,
+                        name: 'images/[name].[hash:7].[ext]'
                     }
                 }
             }
@@ -102,12 +106,6 @@ const config = {
             // imgs: path.join(__dirname, 'src/images')
         }
     },
-    devServer: {
-        port: 8080,
-        contentBase: path.join(__dirname, '../dist'),
-        historyApiFallback: true,
-        hot: true
-    },
     plugins:[
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
@@ -116,6 +114,14 @@ const config = {
             // filename:"hello"
             
         }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+             }
+         }),
+         new MiniCssExtractPlugin({
+            filename: 'css/[name].css',
+         }),
         new webpack.HotModuleReplacementPlugin()
    ],
    optimization: {
@@ -129,7 +135,9 @@ const config = {
                 chunks: 'all',
             },
         },
-    }
+    },
+    // webpack5 mode == production 已经默认开启代码压缩  无需配置
+    minimizer: [new UglifyJsPlugin()]
   },
    target: process.env.NODE_ENV === 'development' ? 'web' : 'browserslist'
  }

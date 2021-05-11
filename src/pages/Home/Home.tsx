@@ -2,7 +2,7 @@
  * @Author: xiaoping.xu
  * @Date: 2021-05-02 15:43:40
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-02 19:27:07
+ * @LastEditTime: 2021-05-11 01:12:45
  * @Desc: 
  */
 import React, { useState } from 'react'
@@ -13,7 +13,7 @@ const Home:React.FC<{}> = () => {
 
     return (
         <div>
-            统计：{count}
+            统计1234：{count}
             <div>
                 <button onClick={() => setCount(count+1)}>click +</button>
                 <button onClick={() => setCount(count-1)}>click -</button>

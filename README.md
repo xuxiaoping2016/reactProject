@@ -89,9 +89,11 @@ https://www.cnblogs.com/ladybug7/p/12321254.html
 https://www.cnblogs.com/cherryvenus/p/9808320.html
 
 配置less
-npm install style-loader css-loader less-loader postcss-loader autoprefixer --save-dev
+npm install style-loader css-loader less-loader postcss-loader postcss-preset-env autoprefixer --save-dev
+npm i less --save-dev
 https://www.cnblogs.com/RoadAspenBK/p/9342850.html
-
+https://www.npmjs.com/package/postcss-loader
+https://www.npmjs.com/package/postcss-preset-env
 配置scss
 npm install node-sass sass-loader css-loader style-loader postcss-loader autoprefixer -D
 样式配置
@@ -104,6 +106,9 @@ https://www.jianshu.com/p/d45a31c50711
 
 css-loader中importLoaders的理解
 https://zhuanlan.zhihu.com/p/94706976
+
+postcss-preset-env 自动添加css兼容性前缀
+https://my.oschina.net/u/4125329/blog/4911544
 
 
 postcss-loader的插件
@@ -200,9 +205,25 @@ https://blog.csdn.net/WEB_YH/article/details/79325182?utm_source=blogxgwz9
 
 八、react 按需加载 的实现及原理
 https://segmentfault.com/a/1190000009539836
+常用的代码分离方式 https://webpack.docschina.org/guides/code-splitting/
 
 九、提取公共代码使用webpack.optimize.CommonsChunkPlugin报错
 webpack.optimize.CommonsChunkPlugin has been removed, please use config.optimization.splitChunks instead
+<!-- node_modules依赖打包成一个包   不知道依赖包改变会不会跟着改变 -->
+```javascript
+optimization: {
+  // moduleIds: 'deterministic',
+  runtimeChunk: 'single',
+  splitChunks: {
+      cacheGroups: {
+          vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+          },
+      },
+  }
+```
 
 https://blog.csdn.net/github_36487770/article/details/80228147
 详解CommonsChunkPlugin的配置和用法
@@ -212,6 +233,19 @@ https://segmentfault.com/a/1190000012828879
 十、代码压缩
 UglifyJSPlugin   vendor 直接从2600KB 变为330多kb
 webpack.DefinePlugin  vendor 直接从330KB 变为209kb
+npm install uglifyjs-webpack-plugin --save-dev
+```javascript
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+module.exports = {
+  optimization: {
+    minimizer: [new UglifyJsPlugin()],
+  },
+};
+```
+
+DefinePlugin
+https://blog.csdn.net/wushuitaolove/article/details/103044772
 
 十一、在使用extract-text-webpack-plugin给webpack打包时出现报错
 (node:14844) DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead
@@ -229,6 +263,9 @@ webpack.DefinePlugin  vendor 直接从330KB 变为209kb
 终极解决方案
 webpack 插件 mini-css-extract-plugin 配置项请教 https://segmentfault.com/q/1010000015723367/a-1020000015729448
 
+```javascript
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+```
 
 十二、nginx 配置解决 react 、vue 单页面刷新404问题
 https://blog.csdn.net/a20023930/article/details/80436663
@@ -307,3 +344,19 @@ npm install --save-dev html-webpack-plugin clean-webpack-plugin
 
 3 errors have detailed information that is not shown.
 Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
+
+Webpack踩坑——Webpack-dev-server无法自动更新
+https://blog.csdn.net/qq_39236402/article/details/115124803
+browserslist 导致 webpack-dev-server 的自动刷新失效
+https://segmentfault.com/q/1010000038165280
+
+https://blog.csdn.net/qq_34111969/article/details/112387939
+webpack5修改样式后，webpack-dev-server没有刷新的问题
+最终定位到的是我在package.json里面写了browserslist
+
+解决方法：
+删除browserslist，或者在webpack.config.js里面添加
+module.exports = {
+  target: process.env.NODE_ENV = "production" ? "browserslist" : "web"
+}
+npm install --save-dev cross-env

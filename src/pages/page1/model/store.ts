@@ -2,13 +2,16 @@
  * @Author: xiaoping.xu
  * @Date: 2021-05-02 19:42:46
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-05 02:25:57
+ * @LastEditTime: 2021-05-06 18:24:06
  * @Desc: 
  */
-import { action, computed, observable } from 'mobx'
+import { action, computed, observable,makeObservable } from 'mobx'
 // import {storeGenerator} from 'src/stores/storeGenerator'
 
 class Store {
+    constructor() {
+        makeObservable(this)
+    }
     @observable name: string = ''
 
     @observable age: number = 0

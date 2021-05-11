@@ -2,7 +2,7 @@
  * @Author: xiaoping.xu
  * @Date: 2021-04-30 15:33:46
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-05 02:22:44
+ * @LastEditTime: 2021-05-10 20:17:22
  * @Desc: 
  */
 
@@ -11,6 +11,7 @@ import ReactDom from 'react-dom'
 import {Provider} from 'mobx-react'
 import store from 'src/stores'
 import getRouter from './router/router'
+import '@/assets/styles/common.less'
 
 
 /*初始化*/

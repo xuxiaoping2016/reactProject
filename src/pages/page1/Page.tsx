@@ -2,40 +2,18 @@
  * @Author: xiaoping.xu
  * @Date: 2021-05-02 16:01:56
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-05 02:35:18
+ * @LastEditTime: 2021-05-06 18:40:44
  * @Desc: 
  */
 
-import React,{createRef, useCallback} from 'react'
+import React,{useRef, useCallback} from 'react'
 // import store from './model/store'
 import { inject, observer } from 'mobx-react'
-import { action, computed, observable,autorun } from 'mobx'
-
-
-class Store {
-    @observable count = 0;
-    @computed get result() {
-      return this.count + 100;
-    }
-    @action add () {
-      this.count = this.count + 1;
-    }
-  };
-  
-  const mstore = new Store();
-  
-  setInterval(() => {
-   mstore.add();
-  }, 2000);
-  
-  autorun(() => {
-    console.log(mstore.result);
-  });
 
 const Page = (props) => {
    console.log('props',props)
-    const nameRef = createRef<HTMLInputElement>()
-    const ageRef = createRef<HTMLInputElement>()
+    const nameRef = useRef<HTMLInputElement>()
+    const ageRef = useRef<HTMLInputElement>()
     
     const {
         name,
@@ -50,7 +28,7 @@ const Page = (props) => {
         setName(nameRef.current.value)
     }
     const changeAge = useCallback(()=>{
-        setAge(Number(ageRef.current.value))
+        setAge(Number(ageRef.current.value)|| 0)
     },[])
     return (
         <div>
