@@ -2,7 +2,7 @@
  * @Author: xiaoping.xu
  * @Date: 2021-05-11 00:37:19
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2021-05-11 11:24:32
+ * @LastEditTime: 2021-05-11 14:39:31
  * @Desc: 
  */
 
@@ -49,13 +49,19 @@ const config = {
             {
                 test: /\.less$/i,
                 exclude: /node_modules|antd\.css/,
-                use: [MiniCssExtractPlugin.loader, {
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                          publicPath: '../'
+                        },
+                    },{
                         loader:'css-loader',
                         options: {
                             modules: {
                                 mode: 'local',
                                 localIdentName: "[path][name]__[local]--[hash:base64:5]"
-                            },
+                            }
                         }
                     },{
                         loader:'less-loader',

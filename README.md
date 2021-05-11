@@ -157,6 +157,10 @@ https://www.cnblogs.com/zhouhui231/p/12688496.html
 https://www.dazhuanlan.com/mobile/
 
 
+webpack生成的css文件background-image url图片无法加载
+https://www.cnblogs.com/wonyun/p/11038417.html
+
+
 webpack(7)_CSS_使用purifycss-webpack来实现Tree Shaking
 https://blog.csdn.net/u010982507/article/details/81437090
 
