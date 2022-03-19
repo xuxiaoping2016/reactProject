@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es2016",
+    "lib": ["es6", "es7", "dom", "ES2019.Object", "es2017"],
+    "sourceMap": true,
+    "jsx": "react",
+    "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "rootDirs": ["./src"],
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "allowJs": true,
+    "allowUnusedLabels": true,
+    "experimentalDecorators": true,
+    "noEmit": true,
+    "typeRoots": ["./typings"],
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "kraken.config.js",
+    "kraken.menu.js",
+    "**/*.unit.test.ts",
+    "**/*.unit.test.tsx"
+  ]
+}

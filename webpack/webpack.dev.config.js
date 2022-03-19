@@ -2,7 +2,7 @@
  * @Author: xiaoping.xu
  * @Date: 2022-03-19 08:54:24
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2022-03-19 21:40:13
+ * @LastEditTime: 2022-03-19 23:50:10
  * @Desc: 
  */
 
@@ -12,6 +12,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
     mode: "development",
+    devtool: 'inline-source-map',
     entry: path.join(__dirname,'../src/index.js'),
     output: {
         // filename:'bundle.js',
