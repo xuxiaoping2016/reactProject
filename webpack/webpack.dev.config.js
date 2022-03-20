@@ -2,7 +2,7 @@
  * @Author: xiaoping.xu
  * @Date: 2022-03-19 08:54:24
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2022-03-19 23:50:10
+ * @LastEditTime: 2022-03-20 12:50:30
  * @Desc: 
  */
 
@@ -31,6 +31,59 @@ module.exports = {
             },
             {
                 test: /\.less$/,
+                exclude: /node_modules/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                // mode: 'local',
+                                localIdentName: "[path][name]__[local]--[hash:base64:5]"
+                            },
+                        }
+
+                    },
+                    'postcss-loader',
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions:{
+                                javascriptEnabled: true,
+                            }
+                            
+                            // modifyVars: themeVars,
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.less$/,
+                exclude: /src/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders:1
+                        }
+
+                    },
+                    'postcss-loader',
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions:{
+                                javascriptEnabled: true,
+                            }
+                            
+                            // modifyVars: themeVars,
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.css$/,
                 use: [
                     'style-loader',
                     {
@@ -42,9 +95,9 @@ module.exports = {
                             },
                         }
 
-                    },
-                    'less-loader'
-                ]
+                    }
+                ],
+                exclude: /node_modules/
             }
         ]
     },

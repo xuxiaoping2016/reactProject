@@ -64,6 +64,9 @@ https://www.cnblogs.com/ikcamp/p/8521145.html
 
 安装mobx
 npm install mobx mobx-react --save
+
+
+对修饰器的实验支持功能在将来的版本中可能更改。在 "tsconfig" 或 "jsconfig" 中设置 "experimentalDecorators" 选项以删除此警告。ts(1219)
 Experimental support for decorators is a feature that is subject to change in a future release. Set the 'experimentalDecorators' option in your 'tsconfig' or 'jsconfig' to remove this warning
 https://blog.csdn.net/lydia_liuY/article/details/81462208
 
@@ -329,6 +332,12 @@ https://blog.csdn.net/chiuwingyan/article/details/80696360
 babel-plugin-import的配置项
 https://www.jianshu.com/p/87efabb6a333
 备注 : 配置 style: true 则在项目编译阶段，可以对引入的 antd 样式文件进行编译，从而可以压缩打包尺寸；而配置style: "css", 则直接引入经过打包后的 antd 样式文件
+
+
+[antd按需引入样式无效](https://www.jianshu.com/p/603a61471ff6)
+[css-loader中importLoaders的理解](https://zhuanlan.zhihu.com/p/94706976)
+
+
 
 Inline JavaScript is not enabled. Is it set in your options
 https://www.cnblogs.com/xtjatswc/p/10317513.html

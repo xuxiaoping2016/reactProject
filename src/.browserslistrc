@@ -1,0 +1,20 @@
+
+
+[production]
+last 2 Chrome versions
+Safari >= 9
+Firefox ESR
+Edge >= 12
+IE >= 11
+
+[development]
+last 1 Chrome version 
+Edge 17
+IE 11
+
+defaults
+not ie < 8
+last 2 versions
+> 1%
+iOS 7
+last 3 iOS versions

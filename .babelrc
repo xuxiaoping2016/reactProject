@@ -9,6 +9,15 @@
             {
               "legacy": true
             }
+        ],
+        [
+            "babel-plugin-import",
+            {
+              "libraryName": "antd",
+              "libraryDirectory": "es",
+              "style": true
+            },
+            "ant"
         ]
     ]
 }
