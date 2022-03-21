@@ -2,7 +2,7 @@
  * @Author: xiaoping.xu
  * @Date: 2022-03-19 08:54:24
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2022-03-20 23:34:00
+ * @LastEditTime: 2022-03-21 16:53:56
  * @Desc: 
  */
 const webpack = require('webpack')
@@ -12,6 +12,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin')
+const Happypack = require('happypack')
 
 module.exports = {
     mode: "development",
@@ -28,13 +29,13 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 include: path.join(__dirname, '../src'),
                 exclude: /(node_modules|bower_components)/,
-                use:[
-                    {
-                        loader: "babel-loader",
-                        options:{
-                            cacheDirectory: true
-                        }
-                    }
+                use:[ 'happypack/loader?id=babel'
+                    // {
+                    //     loader: "babel-loader",
+                    //     options:{
+                    //         cacheDirectory: true
+                    //     }
+                    // }
                 ]
             },
             {
@@ -140,6 +141,17 @@ module.exports = {
         new webpack.IgnorePlugin({
             resourceRegExp: /^\.\/locale$/,
             contextRegExp: /moment$/
+        }),
+
+        new Happypack({
+            id: 'babel',
+            // loaders:[{
+            //     loader: "babel-loader",
+            //     options:{
+            //         cacheDirectory: true
+            //     }
+            // }]
+            loaders: ['babel-loader?cacheDirectory']
         })
         
         // new HtmlWebpackPlugin({

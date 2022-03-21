@@ -2,13 +2,14 @@
  * @Author: xiaoping.xu
  * @Date: 2022-03-19 08:54:24
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2022-03-20 23:33:18
+ * @LastEditTime: 2022-03-21 16:29:25
  * @Desc: 
  */
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const Happypack = require('happypack')
 
 module.exports = {
     mode: "development",
@@ -25,13 +26,13 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 include: path.join(__dirname, '../src'),
                 exclude: /(node_modules|bower_components)/,
-                use:[
-                    {
-                        loader: "babel-loader",
-                        options:{
-                            cacheDirectory: true
-                        }
-                    }
+                use:[ 'happypack/loader?id=babel'
+                    // {
+                    //     loader: "babel-loader",
+                    //     options:{
+                    //         cacheDirectory: true
+                    //     }
+                    // }
                 ]
             },
             {
@@ -135,6 +136,18 @@ module.exports = {
         new webpack.IgnorePlugin({
             resourceRegExp: /^\.\/locale$/,
             contextRegExp: /moment$/
+        }),
+
+
+        new Happypack({
+            id: 'babel',
+            // loaders:[{
+            //     loader: "babel-loader",
+            //     options:{
+            //         cacheDirectory: true
+            //     }
+            // }]
+            loaders: ['babel-loader?cacheDirectory']
         })
         // new HtmlWebpackPlugin({
         //     template: path.resolve(__dirname, '../public/index.html'),
