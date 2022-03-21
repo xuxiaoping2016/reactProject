@@ -105,6 +105,28 @@ PostCSS以及cssnext语法
 
 browserslist详解
 https://www.jianshu.com/p/d45a31c50711
+```javascript
+  
+
+[production]
+last 2 Chrome versions
+Safari >= 9
+Firefox ESR
+Edge >= 12
+IE >= 11
+
+[development]
+last 1 Chrome version 
+Edge 17
+IE 11
+
+defaults
+not ie < 8
+last 2 versions
+> 1%
+iOS 7
+last 3 iOS versions
+```
 
 
 css-loader中importLoaders的理解
@@ -162,6 +184,8 @@ https://www.dazhuanlan.com/mobile/
 
 webpack生成的css文件background-image url图片无法加载
 https://www.cnblogs.com/wonyun/p/11038417.html
+
+[webpack5 打包生成多余图片 export default __webpack_public_path__的解决方案](https://blog.csdn.net/shentian885/article/details/121244576)
 
 
 webpack(7)_CSS_使用purifycss-webpack来实现Tree Shaking
@@ -251,6 +275,10 @@ module.exports = {
 };
 ```
 
+npm i optimize-css-assets-webpack-plugin  terser-webpack-plugin --save-dev
+[terser-webpack-plugin替代uglifyjs-webpack-plugin](https://blog.csdn.net/LLL_liuhui/article/details/103887900)
+
+
 DefinePlugin
 https://blog.csdn.net/wushuitaolove/article/details/103044772
 
@@ -273,6 +301,8 @@ webpack 插件 mini-css-extract-plugin 配置项请教 https://segmentfault.com/
 ```javascript
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 ```
+
+
 
 十二、nginx 配置解决 react 、vue 单页面刷新404问题
 https://blog.csdn.net/a20023930/article/details/80436663

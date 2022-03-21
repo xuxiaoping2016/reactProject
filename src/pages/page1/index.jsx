@@ -2,12 +2,14 @@
  * @Author: xiaoping.xu
  * @Date: 2022-03-19 10:35:39
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2022-03-20 11:40:48
+ * @LastEditTime: 2022-03-20 23:16:25
  * @Desc: 
  */
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button } from 'antd';
+import moment from 'moment'
+import waitImg from 'assets/images/wait.png'
 import {increment, decrement, reset} from '../../store/actions/reduxDemo'
 import styles from './index.less'
 
@@ -40,10 +42,27 @@ export default class Page1 extends React.Component{
         const { increment, decrement, reset, counter } = this.props;
         return  (
             <div>
+              <div>
+                <div> IgnorePlugin: {moment().format('ll')}</div>
+              </div>
 
               <div className={styles['dis_flex']}>
-                <div className={styles['flex1']}>fdfd</div>
-                <div className={styles['flex1']}>右边</div>
+                <div className={styles['flex1']}>css样式前端配置</div>
+                <div className={styles['flex1']}>右边de</div>
+              </div>
+
+              <div>
+                <div> 图片 资源配置</div>
+                <img src={waitImg} />
+                <div className={styles['bgimg']}>测试背景class背景图片</div>
+                <div
+                  style={{
+                    height: '60px',
+                    background: `url(${waitImg}) no-repeat`,
+                  }}
+                >
+                  测试背景style背景图片
+                </div>
               </div>
 
 

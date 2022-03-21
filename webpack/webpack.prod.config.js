@@ -2,13 +2,16 @@
  * @Author: xiaoping.xu
  * @Date: 2022-03-19 08:54:24
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2022-03-20 23:33:18
+ * @LastEditTime: 2022-03-20 23:34:00
  * @Desc: 
  */
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin')
 
 module.exports = {
     mode: "development",
@@ -36,14 +39,14 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                // exclude: /node_modules/,
                 include: path.join(__dirname, '../src'),
                 exclude: /(node_modules|bower_components)/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
+                            esModule: false,
                             modules: {
                                 // mode: 'local',
                                 localIdentName: "[path][name]__[local]--[hash:base64:5]"
@@ -66,11 +69,10 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                // exclude: /src/,
                 exclude: path.join(__dirname, '../src'),
                 include: /(node_modules|bower_components)/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
@@ -94,7 +96,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
@@ -109,16 +111,14 @@ module.exports = {
                 exclude: /node_modules/
             },{
                 test: /\.(jpg|jpeg|gif|png)$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                          limit: 1024*5,
-                          outputPath: 'images/',
-                          name: '[name].[ext]',
-                        },
-                      }
-                ]
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                      limit: 1024*3,
+                      outputPath: 'images/',
+                      name: '[name].[ext]',
+                    },
+                  }
             }
         ]
     },
@@ -130,18 +130,62 @@ module.exports = {
             // filename:"hello"
             
         }),
-        // 忽略 moment 下的 /locale 目录
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].[contenthash:8].css',
+            chunkFilename: 'css/[name].[contenthash:8].chunk.css'
+         }),
+
+         // 忽略 moment 下的 /locale 目录
         // new webpack.IgnorePlugin(/\.\/locale/, /moment/)
         new webpack.IgnorePlugin({
             resourceRegExp: /^\.\/locale$/,
             contextRegExp: /moment$/
         })
+        
         // new HtmlWebpackPlugin({
         //     template: path.resolve(__dirname, '../public/index.html'),
         //     // filename: "index",
         //     title:"react全家桶"
         // })
     ],
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserJSPlugin({
+                parallel: true, // 是否并行打包
+            }),
+            new OptimizeCssAssetsPlugin()
+        ],
+        splitChunks: {
+            chunks: 'all',
+            /**
+             * initial 入口 chunk，对于异步导入的文件不处理
+                async 异步 chunk，只对异步导入的文件处理
+                all 全部 chunk
+                */
+
+            // 缓存分组
+            cacheGroups: {
+                // 第三方模块
+                vendor: {
+                    name: 'vendor', // chunk 名称
+                    priority: 1, // 权限更高，优先抽离，重要！！！
+                    test: /node_modules/,
+                    minSize: 0,  // 大小限制
+                    minChunks: 1  // 最少复用过几次
+                },
+
+                // 公共的模块
+                common: {
+                    name: 'common', // chunk 名称
+                    priority: 0, // 优先级
+                    minSize: 0,  // 公共模块的大小限制
+                    minChunks: 2  // 公共模块最少复用过几次
+                }
+            }
+        }
+        
+    },
     devServer:{
         static: path.join(__dirname, '../dist'),
         host: "localhost",
