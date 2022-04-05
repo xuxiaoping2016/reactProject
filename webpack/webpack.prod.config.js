@@ -2,7 +2,7 @@
  * @Author: xiaoping.xu
  * @Date: 2022-03-19 08:54:24
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2022-03-21 16:53:56
+ * @LastEditTime: 2022-03-21 17:56:14
  * @Desc: 
  */
 const webpack = require('webpack')
@@ -12,6 +12,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const Happypack = require('happypack')
 
 module.exports = {
@@ -152,7 +153,8 @@ module.exports = {
             //     }
             // }]
             loaders: ['babel-loader?cacheDirectory']
-        })
+        }),
+        new HardSourceWebpackPlugin() 
         
         // new HtmlWebpackPlugin({
         //     template: path.resolve(__dirname, '../public/index.html'),

@@ -2,7 +2,7 @@
  * @Author: xiaoping.xu
  * @Date: 2022-03-19 10:35:39
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2022-03-20 23:16:25
+ * @LastEditTime: 2022-03-21 17:18:57
  * @Desc: 
  */
 import React from 'react'
@@ -52,7 +52,7 @@ export default class Page1 extends React.Component{
               </div>
 
               <div>
-                <div> 图片 资源配置</div>
+                <div> 图片 资源配置!!!</div>
                 <img src={waitImg} />
                 <div className={styles['bgimg']}>测试背景class背景图片</div>
                 <div

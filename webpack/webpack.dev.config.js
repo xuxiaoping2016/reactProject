@@ -2,13 +2,14 @@
  * @Author: xiaoping.xu
  * @Date: 2022-03-19 08:54:24
  * @LastEditors: xiaoping.xu
- * @LastEditTime: 2022-03-21 16:29:25
+ * @LastEditTime: 2022-03-26 18:31:12
  * @Desc: 
  */
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const Happypack = require('happypack')
 
 module.exports = {
@@ -44,7 +45,9 @@ module.exports = {
                     'style-loader',
                     {
                         loader: 'css-loader',
+                        
                         options: {
+                            esModule: false,
                             modules: {
                                 // mode: 'local',
                                 localIdentName: "[path][name]__[local]--[hash:base64:5]"
@@ -148,7 +151,8 @@ module.exports = {
             //     }
             // }]
             loaders: ['babel-loader?cacheDirectory']
-        })
+        }),
+        // new HardSourceWebpackPlugin() 
         // new HtmlWebpackPlugin({
         //     template: path.resolve(__dirname, '../public/index.html'),
         //     // filename: "index",
